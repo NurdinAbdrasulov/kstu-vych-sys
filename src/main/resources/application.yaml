@@ -1,0 +1,12 @@
+server:
+  port: 9090
+
+spring:
+  application.name: lb
+  profiles:
+    active: dev
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
