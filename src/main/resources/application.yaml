@@ -10,3 +10,10 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
+
+
+encryption:
+  secret-key: hr8$AY!A%iJMcb9ukcIaNaDEzE16@p
+  algorithm: AES
+
+decryption-time: 10

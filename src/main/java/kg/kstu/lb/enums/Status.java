@@ -8,9 +8,11 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public enum PaymentStatus {
-    PAID("Оплачено"),
-    NON_PAID("Не оплачено");
+public enum Status {
+    AVAILABLE("Доступен"),
+    IN_PROGRESS("В процессе")
+    ;
+
 
     String description;
 }
