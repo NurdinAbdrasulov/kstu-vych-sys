@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: ${PROJECT_PORT:9090}
 
 spring:
   application.name: lb
@@ -16,4 +16,4 @@ encryption:
   secret-key: hr8$AY!A%iJMcb9ukcIaNaDEzE16@p
   algorithm: AES
 
-decryption-time: 10
+decryption-time: ${DECRYPTION_TIME:10}
