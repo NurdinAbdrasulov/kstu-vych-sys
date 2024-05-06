@@ -11,4 +11,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DecryptResponse {
     String decryptedText;
+    String encryptedText;
+    String comment;
 }

@@ -13,7 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+import java.util.Optional;
+import java.util.UUID;
 
 @org.springframework.stereotype.Service
 @RequiredArgsConstructor
@@ -37,17 +38,18 @@ public class ServiceImpl implements Service {
 
     @Override
     public DecryptResponse decrypt(DecryptRequest request) {
-        log.info("начало расшифровки");
+        var logComment = Optional.ofNullable(request.getComment()).orElse(UUID.randomUUID().toString());
+        log.info("начало расшифровки: %s".formatted(logComment));
         status = Status.IN_PROGRESS;
         startDate = LocalDateTime.now();
-        String encryptedText = cipherComponent.encrypt(request.getEncryptedText());
+        String decryptedText = cipherComponent.decrypt(request.getEncryptedText());
 
         do {
         }
         while (LocalDateTime.now().isBefore(startDate.plusSeconds(decryptionTime)));
         status = Status.AVAILABLE;
-        log.info("конец расшифровки");
+        log.info("конец расшифровки: %s".formatted(logComment));
 
-        return new DecryptResponse(encryptedText);
+        return new DecryptResponse(decryptedText, request.getEncryptedText(), logComment);
     }
 }
